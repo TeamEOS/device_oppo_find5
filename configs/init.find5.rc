@@ -471,3 +471,8 @@ service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/sdcard0 /s
     class late_start
     disabled
 
+service conn_init /system/bin/logwrapper /system/bin/conn_init
+    class late_start
+    user system
+    group system wifi
+    oneshot
