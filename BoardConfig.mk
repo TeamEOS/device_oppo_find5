@@ -44,8 +44,7 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 
 # Kernel
 COMMON_GLOBAL_CFLAGS := -fno-strict-aliasing
-TARGET_GCC_VERSION := 4.7
-TARGET_TOOLCHAIN_PREFIX := prebuilts/gcc/linux-x86/arm/arm-eabi-4.7/bin/arm-eabi-
+TARGET_ARM_GCC_VER := 4.7
 TARGET_KERNEL_SOURCE := kernel/oppo/find5
 TARGET_KERNEL_CONFIG := cyanogenmod_find5_defconfig
 
