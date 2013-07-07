@@ -44,7 +44,7 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 
 # Kernel
 COMMON_GLOBAL_CFLAGS := -fno-strict-aliasing
-TARGET_ARM_GCC_VER := 4.6
+TARGET_ARM_GCC_VER := 4.6-aosp
 TARGET_KERNEL_SOURCE := kernel/oppo/find5
 TARGET_KERNEL_CONFIG := cyanogenmod_find5_defconfig
 
