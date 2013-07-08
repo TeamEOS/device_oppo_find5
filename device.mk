@@ -245,6 +245,12 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp \
 	ro.adb.secure=0
 
+# Set build date
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+
+# Fix bad lunch inheritance
+PRODUCT_NAME := full_find5
+
 # for bugmailer
 PRODUCT_PACKAGES += send_bug
 PRODUCT_COPY_FILES += \
