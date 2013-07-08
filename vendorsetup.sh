@@ -1,3 +1,3 @@
-add_lunch_combo cfx_find5-userdebug
-add_lunch_combo cfx_find5-eng
-add_lunch_combo cfx_find5-codefirex
+add_lunch_combo full_find5-userdebug
+add_lunch_combo full_find5-eng
+add_lunch_combo full_find5-codefirex
