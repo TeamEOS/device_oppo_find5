@@ -181,7 +181,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
         CMFileManager \
         Torch \
-        MusicFX
+        MusicFX \
+		SpeechRecorder \
+		Email \
+		Exchange \
+		SpareParts \
+		ZeroXBenchmark \
+		
 
 PRODUCT_PACKAGES += \
 	libgenlock \
