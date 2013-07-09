@@ -179,7 +179,7 @@ PRODUCT_PACKAGES += \
 	
 # Build extra non-CM packages
 PRODUCT_PACKAGES += \
-        FileManager \
+        CMFileManager \
         Torch \
         MusicFX
 
@@ -191,7 +191,7 @@ PRODUCT_PACKAGES += \
 	copybit.msm8960 \
 	lights.find5 \
 	camera-wrapper.msm8960 \
-        power.find5
+    power.find5
 
 PRODUCT_PACKAGES += \
 	alsa.msm8960 \
