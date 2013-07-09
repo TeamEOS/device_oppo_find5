@@ -176,6 +176,12 @@ PRODUCT_PACKAGES += \
 # Filesystem management tools
 PRODUCT_PACKAGES += \
 	e2fsck
+	
+# Build extra non-CM packages
+PRODUCT_PACKAGES += \
+   FileManager \
+   Torch \
+   MusicFX
 
 PRODUCT_PACKAGES += \
 	libgenlock \
