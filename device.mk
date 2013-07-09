@@ -245,12 +245,6 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp \
 	ro.adb.secure=0
 
-# Set build date
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-
-# Fix bad lunch inheritance
-PRODUCT_NAME := full_find5
-
 # for bugmailer
 PRODUCT_PACKAGES += send_bug
 PRODUCT_COPY_FILES += \
@@ -261,3 +255,9 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # This is the find5-specific audio package
 $(call inherit-product, frameworks/base/data/sounds/AudioPackage10.mk)
+
+# Set build date
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+
+# Fix bad lunch inheritance
+PRODUCT_NAME := full_find5
