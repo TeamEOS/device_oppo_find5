@@ -21,10 +21,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/oppo/find5/device.mk)
 $(call inherit-product-if-exists, vendor/oppo/find5/find5-vendor.mk)
 
-ifneq ($(TARGET_BUILD_VARIANT),codefirex)
 # Get the long list of APNs
 PRODUCT_COPY_FILES := device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.xml
-else
+
 # Specify phone tech before including full_phone
 $(call inherit-product, vendor/cfx/config/gsm.mk)
 
@@ -33,7 +32,6 @@ $(call inherit-product, vendor/cfx/config/common_full_phone.mk)
 # Copy Bootanimation
 PRODUCT_COPY_FILES += \
     vendor/cfx/prebuilt/common/bootanimation/720.zip:system/media/bootanimation.zip
-endif
 
 PRODUCT_NAME := full_find5
 PRODUCT_DEVICE := find5
