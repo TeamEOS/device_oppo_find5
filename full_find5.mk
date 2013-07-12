@@ -35,3 +35,7 @@ PRODUCT_BRAND := Android
 PRODUCT_MODEL := Find 5
 PRODUCT_MANUFACTURER := Oppo
 PRODUCT_RESTRICT_VENDOR_FILES := false
+
+# Inherit from hardware-specific part of the product configuration
+$(call inherit-product, device/oppo/find5/device.mk)
+$(call inherit-product-if-exists, vendor/oppo/find5/find5-vendor.mk)
