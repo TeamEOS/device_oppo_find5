@@ -182,7 +182,6 @@ PRODUCT_PACKAGES += \
         CMFileManager \
         Torch \
         MusicFX \
-		SpeechRecorder \
 		Email \
 		Exchange \
 		SpareParts \
