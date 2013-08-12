@@ -40,6 +40,8 @@ PRODUCT_BRAND := Android
 PRODUCT_MODEL := Find 5
 PRODUCT_MANUFACTURER := Oppo
 PRODUCT_RESTRICT_VENDOR_FILES := false
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=oppo_find5 BUILD_FINGERPRINT=google/occam/mako:4.3/JB_MR2/573038:user/release-keys PRIVATE_BUILD_DESC="occam-user 4.3 JB_MR2 573038 release-keys"
+
 
 # Inherit from hardware-specific part of the product configuration
 $(call inherit-product, device/oppo/find5/device.mk)
