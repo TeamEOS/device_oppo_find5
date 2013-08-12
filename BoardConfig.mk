@@ -44,7 +44,7 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 
 # Kernel
 TARGET_KERNEL_CONFIG := color_rom_defconfig
-TARGET_KERNEL_SOURCE := kernel/oppo/find5-4.2
+TARGET_KERNEL_SOURCE := kernel/oppo/find5
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
