@@ -43,8 +43,8 @@ on init
     mount vfat /dev/block/platform/msm_sdcc.1/by-name/modem /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
 
 on fs
-#    mount_all ./fstab.find5
-#    setprop ro.crypto.fuse_sdcard true
+    mount_all ./fstab.find5
+    setprop ro.crypto.fuse_sdcard true
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
