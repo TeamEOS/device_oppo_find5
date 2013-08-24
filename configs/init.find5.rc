@@ -286,11 +286,6 @@ service rmt_storage /system/bin/rmt_storage
     class main
     user root
 
-# Update WIFI MAC address
-service mac-update /system/bin/mac-update
-    class main
-    user wifi
-    oneshot
 
 service hciattach /system/bin/sh /system/etc/init.find5.bt.sh
     class late_start
