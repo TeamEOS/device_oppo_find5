@@ -53,6 +53,9 @@ PRODUCT_COPY_FILES += \
 	device/oppo/find5/thermald-find5.conf:system/etc/thermald.conf
 
 PRODUCT_COPY_FILES += \
+	device/oppo/find5/configs/mixer_paths.xml:system/etc/mixer_paths.xml
+
+PRODUCT_COPY_FILES += \
 	device/oppo/find5/configs/init.find5.rc:root/init.find5.rc \
 	device/oppo/find5/configs/init.find5.usb.rc:root/init.find5.usb.rc \
 	device/oppo/find5/configs/init.recovery.find5.rc:root/init.recovery.find5.rc \
