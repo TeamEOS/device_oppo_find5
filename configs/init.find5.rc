@@ -23,7 +23,6 @@ on early-init
     mount ext4 /dev/block/platform/msm_sdcc.1/by-name/userdata /data wait rw nosuid
     mkdir /cache
     mount ext4 /dev/block/platform/msm_sdcc.1/by-name/cache /cache wait rw nosuid
-    mount debugfs debugfs /sys/kernel/debug
 
 on init
     export EXTERNAL_STORAGE /storage/sdcard0
@@ -234,6 +233,10 @@ on post-fs-data
     write /sys/module/rpm_resources/enable_low_power/pxo 1
     write /sys/module/rpm_resources/enable_low_power/vdd_dig 1
     write /sys/module/rpm_resources/enable_low_power/vdd_mem 1
+    write /sys/module/pm_8x60/modes/cpu0/retention/idle_enabled 1
+    write /sys/module/pm_8x60/modes/cpu1/retention/idle_enabled 1
+    write /sys/module/pm_8x60/modes/cpu2/retention/idle_enabled 1
+    write /sys/module/pm_8x60/modes/cpu3/retention/idle_enabled 1
     write /sys/module/pm_8x60/modes/cpu0/power_collapse/suspend_enabled 1
     write /sys/module/pm_8x60/modes/cpu1/power_collapse/suspend_enabled 1
     write /sys/module/pm_8x60/modes/cpu2/power_collapse/suspend_enabled 1
@@ -258,6 +261,10 @@ on charger
     write /sys/module/rpm_resources/enable_low_power/pxo 1
     write /sys/module/rpm_resources/enable_low_power/vdd_dig 1
     write /sys/module/rpm_resources/enable_low_power/vdd_mem 1
+    write /sys/module/pm_8x60/modes/cpu0/retention/idle_enabled 1
+    write /sys/module/pm_8x60/modes/cpu1/retention/idle_enabled 1
+    write /sys/module/pm_8x60/modes/cpu2/retention/idle_enabled 1
+    write /sys/module/pm_8x60/modes/cpu3/retention/idle_enabled 1
     write /sys/module/pm_8x60/modes/cpu0/power_collapse/suspend_enabled 1
     write /sys/module/pm_8x60/modes/cpu1/power_collapse/suspend_enabled 1
     write /sys/module/pm_8x60/modes/cpu2/power_collapse/suspend_enabled 1
@@ -286,6 +293,11 @@ service rmt_storage /system/bin/rmt_storage
     class main
     user root
 
+# Update WIFI MAC address
+service mac-update /system/bin/mac-update
+    class main
+    user wifi
+    oneshot
 
 service hciattach /system/bin/sh /system/etc/init.find5.bt.sh
     class late_start

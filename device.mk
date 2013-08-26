@@ -19,6 +19,8 @@
 #
 # Everything in this directory will become public
 
+$(call inherit-product, vendor/oppo/find5/find5-vendor.mk)
+
 DEVICE_PACKAGE_OVERLAYS := device/oppo/find5/overlay
 
 # This device is xhdpi.  However the platform doesn't
@@ -105,7 +107,8 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
 	frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
 	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-	frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml
+	frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
+	frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml
 
 # GPS configuration
 PRODUCT_COPY_FILES += \
@@ -119,19 +122,18 @@ PRODUCT_PACKAGES += \
     Tag \
     com.android.nfc_extras
 
-# NFC feature files
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
-    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml
-
 # NFCEE access control
-#ifeq ($(TARGET_BUILD_VARIANT),user)
-#    NFCEE_ACCESS_PATH := device/oppo/find5/configs/nfcee_access.xml
-#else
-#    NFCEE_ACCESS_PATH := device/oppo/find5/configs/nfcee_access_debug.xml
-#endif
-#PRODUCT_COPY_FILES += \
-#    $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
+ifeq ($(TARGET_BUILD_VARIANT),user)
+    NFCEE_ACCESS_PATH := device/oppo/find5/configs/nfcee_access.xml
+else
+    NFCEE_ACCESS_PATH := device/oppo/find5/configs/nfcee_access_debug.xml
+endif
+
+# NFC access control + feature files + configuration
+PRODUCT_COPY_FILES += \
+    $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml \
+    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
+    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.opengles.version=131072
@@ -258,7 +260,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	ro.adb.secure=0
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
-
+$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
 # This is the find5-specific audio package
 $(call inherit-product, frameworks/base/data/sounds/AudioPackage10.mk)
