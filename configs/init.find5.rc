@@ -424,6 +424,12 @@ service conn_init /system/bin/logwrapper /system/bin/conn_init
     user system
     group system wifi
     oneshot
+    
+service bdAddrLoader /system/bin/bdAddrLoader -f /persist/bluetooth/.bdaddr -h -x
+    class main
+    user bluetooth
+    group system bluetooth
+    oneshot
 
 service qcom-post-fs /system/bin/sh /system/etc/init.qcom.post_fs.sh
     class core
