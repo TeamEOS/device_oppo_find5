@@ -43,8 +43,8 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=find5 lpj
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 
 # Kernel
-TARGET_KERNEL_CONFIG := find5_defconfig
-TARGET_KERNEL_SOURCE := kernel/oppo/find5-88
+TARGET_KERNEL_CONFIG := aokp_find5_defconfig
+TARGET_KERNEL_SOURCE := kernel/oppo/find5
 
 # Recovery
 TARGET_RECOVERY_FSTAB := device/oppo/find5/configs/fstab.find5
@@ -83,7 +83,6 @@ TARGET_QCOM_DISPLAY_VARIANT := caf
 USE_OPENGL_RENDERER := true
 TARGET_USES_ION := true
 TARGET_USES_C2D_COMPOSITION := true
-TARGET_DISPLAY_USE_RETIRE_FENCE := true
 
 # For 4.3 kernel
 COMMON_GLOBAL_CFLAGS += -DNEW_ION_API
@@ -108,14 +107,14 @@ BOARD_USES_SECURE_SERVICES := true
 BOARD_LIB_DUMPSTATE := libdumpstate.find5
 
 # GPS
-#BOARD_HAVE_NEW_QC_GPS := true
+BOARD_HAVE_NEW_QC_GPS := true
 #The below will be needed if we ever want to build GPS HAL from source
 #TARGET_PROVIDES_GPS_LOC_API := true
 #BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
 #TARGET_NO_RPC := true
 
 # Camera
-
+USE_DEVICE_SPECIFIC_CAMERA := true
 COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK -DQCOM_BSP_CAMERA_ABI_HACK
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/oppo/find5
@@ -130,8 +129,6 @@ TARGET_USES_QCOM_MM_AUDIO := true
 TARGET_USES_QCOM_COMPRESSED_AUDIO := true
 BOARD_AUDIO_CAF_LEGACY_INPUT_BUFFERSIZE := true
 BOARD_HAVE_LOW_LATENCY_AUDIO := true
-
-USE_DEVICE_SPECIFIC_CAMERA := true
 
 -include vendor/oppo/find5/BoardConfigVendor.mk
 
