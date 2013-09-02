@@ -27,7 +27,6 @@ ifneq ($(filter find5,$(TARGET_DEVICE)),)
 
 LOCAL_PATH := $(call my-dir)
 
-endif
-
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
+endif

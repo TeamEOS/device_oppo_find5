@@ -43,7 +43,7 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=find5 lpj
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 
 # Kernel
-TARGET_KERNEL_CONFIG := find5_defconfig
+TARGET_KERNEL_CONFIG := aokp_find5_defconfig
 TARGET_KERNEL_SOURCE := kernel/oppo/find5
 
 # Recovery
@@ -82,10 +82,9 @@ BOARD_EGL_CFG := device/oppo/find5/configs/egl.cfg
 TARGET_QCOM_DISPLAY_VARIANT := caf
 USE_OPENGL_RENDERER := true
 TARGET_USES_ION := true
+# needed for latest CAF kernel
+COMMON_GLOBAL_CFLAGS += -DNEW_ION_API 
 TARGET_USES_C2D_COMPOSITION := true
-
-# For 4.3 kernel
-COMMON_GLOBAL_CFLAGS += -DNEW_ION_API
 
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/oppo/find5/recovery/recovery_keys.c
@@ -120,7 +119,6 @@ TARGET_RELEASETOOLS_EXTENSIONS := device/oppo/find5
 
 BOARD_CHARGER_ENABLE_SUSPEND := true
 
-
 # Audio
 BOARD_USES_ALSA_AUDIO:= true
 TARGET_QCOM_AUDIO_VARIANT := caf
@@ -132,3 +130,6 @@ BOARD_HAVE_LOW_LATENCY_AUDIO := true
 -include vendor/oppo/find5/BoardConfigVendor.mk
 
 BOARD_HAS_NO_SELECT_BUTTON := true
+
+# dont build docs
+DISABLE_DROIDDOC := true 

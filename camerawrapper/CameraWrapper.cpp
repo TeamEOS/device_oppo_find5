@@ -44,6 +44,10 @@ static int camera_device_close(hw_device_t* device);
 static int camera_get_number_of_cameras(void);
 static int camera_get_camera_info(int camera_id, struct camera_info *info);
 
+#if 0
+static camera_notify_callback orig_notify_cb;
+#endif
+
 static struct hw_module_methods_t camera_module_methods = {
         open: camera_device_open
 };
@@ -101,7 +105,8 @@ static char * camera_fixup_getparams(int id, const char * settings)
 
     // add hdr scene mode to existing scene modes
     params.set(android::CameraParameters::KEY_SUPPORTED_SCENE_MODES, scene_mode_values[id]);
-
+    // added video snapshot supported
+    params.set(android::CameraParameters::KEY_VIDEO_SNAPSHOT_SUPPORTED, "true");
     if (params.get("ae-bracket-hdr")) {
         const char* hdrMode = params.get("ae-bracket-hdr");
         if (strcmp(hdrMode, "HDR") == 0) {
@@ -141,39 +146,31 @@ char * camera_fixup_setparams(int id, const char * settings)
         }
     }
 
-    if (params.get("lensshade")) {
-        // There is a camera mode called "lens shade" which seems to dim
-        // the border of the camera lens. No idea if it's an instagram
-        // effect or if there is a real use, but it should be disabled.
-        // If there is a need for it, we'll have to add support for it in
-        // Camera app.
-        params.set("lensshade", "disable");
-    }
+    // some values take from stock rom
+    params.set("antibanding", "auto");
+    params.set("auto-exposure", "center-weighted");
+    params.set("denoise", "denoise-on");
+    
+    // allowing setting this to true will create the issue
+    // with continious auto focus and flash
+    params.set("auto-exposure-lock", "false");
+    params.set("auto-whitebalance-lock", "false");    
 
-    // Needed for HDR (deadlock otherwise), doesn't affect non-HDR
-    params.set("histogram", "enable");
-
+    // Enable Qualcomm ZSL mode to workaround dark preview
+    // Note: We cannot use Camera app 'enableZSL' as our preview stops
+    params.set("camera-mode", "1");
 
     if (params.get("recording-hint")) {
         const char* isRecording = params.get("recording-hint");
         const char* videoSize = params.get("video-size");
-
-        // Disable ZSL mode when recording
-        if (strcmp(isRecording, "true") == 0)
+        
+        if (strcmp(isRecording, "true") == 0){
+            // ZSL mode MUST be disabled in video mode - breaks HDR video else
             params.set("camera-mode", "0");
-
-
-        // In SD 480p quality, enable 60 fps recording.
-        // XXX: Add this as a setting in Camera app
-        // (off/60/90, only in 720x480)
-        if (strcmp(isRecording, "true") == 0 && strcmp(videoSize, "720x480") == 0)
-            params.set("video-hfr", "60");
-        else
-            params.set("video-hfr", "off");
-    } else {
-        // Enable Qualcomm ZSL mode to workaround dark preview
-        // Note: We cannot use Camera app 'enableZSL' as our preview stops
-        params.set("camera-mode", "1");
+            // stock does it too
+            params.set("power-mode", "Low_Power");
+            params.set("picture-size", videoSize);
+        }
     }
 
     android::String8 strParams = params.flatten();
@@ -198,6 +195,17 @@ int camera_set_preview_window(struct camera_device * device,
     return VENDOR_CALL(device, set_preview_window, window);
 }
 
+#if 0
+void my_notify_cb(int32_t msg_type,
+        int32_t ext1,
+        int32_t ext2,
+        void *user){
+    ALOGD("maxwen my_notify_cb %d", msg_type);
+	
+	orig_notify_cb(msg_type, ext1, ext2, user);
+}
+#endif
+
 void camera_set_callbacks(struct camera_device * device,
         camera_notify_callback notify_cb,
         camera_data_callback data_cb,
@@ -211,6 +219,10 @@ void camera_set_callbacks(struct camera_device * device,
     if(!device)
         return;
 
+#if 0
+	orig_notify_cb = notify_cb;
+    VENDOR_CALL(device, set_callbacks, my_notify_cb, data_cb, data_cb_timestamp, get_memory, user);
+#endif
     VENDOR_CALL(device, set_callbacks, notify_cb, data_cb, data_cb_timestamp, get_memory, user);
 }
 

@@ -65,9 +65,6 @@ char const*const RED_PWM_FILE
 char const*const RED_BLINK_FILE
         = "/sys/class/leds/red/device/blink";
 
-char const*const LED_LOCK_UPDATE_FILE
-        = "/sys/class/leds/red/device/lock";
-
 /**
  * device methods
  */
@@ -137,13 +134,11 @@ set_light_backlight(struct light_device_t* dev,
 {
     int err = 0;
     int brightness = rgb_to_brightness(state);
+    
     pthread_mutex_lock(&g_lock);
-
-    // Write LCD and buttons (follows same brightness)
     err = write_int(LCD_FILE, brightness);
-    err = write_int(BUTTONS_FILE, brightness);
-
     pthread_mutex_unlock(&g_lock);
+    
     return err;
 }
 
@@ -213,7 +208,6 @@ set_speaker_light_locked(struct light_device_t* dev,
             pwm = 0;
         }
     }
-    write_int(LED_LOCK_UPDATE_FILE, 1); // for LED On/Off synchronization
 
     write_int(RED_LED_FILE, red);
     write_int(GREEN_LED_FILE, green);
@@ -225,7 +219,6 @@ set_speaker_light_locked(struct light_device_t* dev,
     }
     write_int(RED_BLINK_FILE, blink);
 
-    write_int(LED_LOCK_UPDATE_FILE, 0);
     return 0;
 }
 
@@ -298,21 +291,14 @@ static int
 set_light_touchkeys(struct light_device_t* dev,
         struct light_state_t const* state)
 {
-    // The buttons backlight follows display brightness. If we
-    // ever need to do something different, do it here.
+    int err = 0;
+    int brightness = rgb_to_brightness(state);
 
-#if 0
     pthread_mutex_lock(&g_lock);
-
-    int on = 0;
-    if (state->color == -1)
-        on = 1;
-
-    write_int(BUTTONS_FILE, on ? read_int(LCD_FILE) : 0);
-
+    write_int(BUTTONS_FILE, brightness);
     pthread_mutex_unlock(&g_lock);
-#endif
-    return 0;
+    
+    return err;
 }
 
 

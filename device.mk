@@ -55,9 +55,6 @@ PRODUCT_COPY_FILES += \
 	device/oppo/find5/thermald-find5.conf:system/etc/thermald.conf
 
 PRODUCT_COPY_FILES += \
-	#device/oppo/find5/configs/mixer_paths.xml:system/etc/mixer_paths.xml
-
-PRODUCT_COPY_FILES += \
 	device/oppo/find5/configs/init.find5.rc:root/init.find5.rc \
 	device/oppo/find5/configs/init.find5.usb.rc:root/init.find5.usb.rc \
 	device/oppo/find5/configs/init.recovery.find5.rc:root/init.recovery.find5.rc \
@@ -70,7 +67,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/oppo/find5/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
 	device/oppo/find5/init.qcom.post_fs.sh:system/etc/init.qcom.post_fs.sh \
-	device/oppo/find5/init.qcom.usb.sh:system/etc/init.qcom.usb.sh \
 	device/oppo/find5/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh \
 	device/oppo/find5/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
 	device/oppo/find5/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh
@@ -137,12 +133,21 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.sf.lcd_density=480
 
+# qcom
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.qc.sdk.audio.ssr=false \
+	ro.qc.sdk.audio.fluencetype=none \
+	ro.qc.sdk.sensors.gestures=false
+
 # Audio Configuration
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.audio.handset.mic=dmic \
 	persist.audio.fluence.mode=endfire \
 	persist.audio.lowlatency.rec=false \
-	af.resampler.quality=4
+	af.resampler.quality=4 \
+	lpa.decode=false \
+	tunnel.decode=false \
+	tunnel.audiovideo.decode=true
 
 # Debugging
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -163,6 +168,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #Upto 3 layers can go through overlays
 PRODUCT_PROPERTY_OVERRIDES += persist.hwc.mdpcomp.enable=true
 
+# Cell Broadcasts
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.cellbroadcast.emergencyids=0-65534 
+        
 PRODUCT_CHARACTERISTICS := nosdcard
 
 PRODUCT_TAGS += dalvik.gc.type-precise
@@ -180,10 +189,10 @@ PRODUCT_PACKAGES += \
         CMFileManager \
         Torch \
         MusicFX \
-		Email \
-		Exchange \
-		SpareParts \
-		ZeroXBenchmark \
+	Email \
+	Exchange \
+	SpareParts \
+	ZeroXBenchmark \
 		
 
 PRODUCT_PACKAGES += \
@@ -194,7 +203,7 @@ PRODUCT_PACKAGES += \
 	copybit.msm8960 \
 	lights.find5 \
 	camera-wrapper.msm8960 \
-    power.find5
+	power.find5
 
 PRODUCT_PACKAGES += \
 	alsa.msm8960 \
@@ -220,8 +229,13 @@ PRODUCT_PACKAGES += \
 	libOmxVdec \
 	libOmxVenc \
 	libOmxCore \
+    	libOmxAacEnc \
+   	libOmxAmrEnc \
+  	libOmxEvrcEnc \
+  	libOmxQcelp13Enc \
 	libstagefrighthw \
-	libc2dcolorconvert
+	libc2dcolorconvert \
+	libdashplayer
 
 PRODUCT_PACKAGES += \
 	bdAddrLoader \
@@ -255,7 +269,14 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp \
 	ro.adb.secure=0
 
-$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+# QCOM
+PRODUCT_PROPERTY_OVERRIDES += \
+    com.qc.hardware=true
+
+# QC Perf
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.extension_library=/system/lib/libqc-opt.so
+$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
 # This is the find5-specific audio package
