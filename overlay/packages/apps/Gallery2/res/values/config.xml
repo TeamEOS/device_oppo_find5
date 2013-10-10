@@ -38,7 +38,6 @@
     <!-- Decode YV16 format on Samsung HDR hardware -->
     <bool name="needsSamsungHDRFormat">false</bool>
     <!-- The camera HAL does its own preview state management during snaps -->
->>>>>>> 6f357a3... camera: remove local picture size array and set enableZSL=true
     <!-- Allows setting video size before recording starts -->
     <bool name="needsEarlyVideoSize">true</bool>
 </resources>
