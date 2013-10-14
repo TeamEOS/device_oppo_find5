@@ -21,5 +21,5 @@
 # function: add_lunch_combo generic-eng
 
 for i in codefirex eng userdebug user; do
-    add_lunch_combo full_find5-userdebug-${i}
+    add_lunch_combo full_find5-${i}
 done
