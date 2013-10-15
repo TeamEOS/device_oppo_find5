@@ -202,7 +202,6 @@ PRODUCT_PACKAGES += \
 	copybit.msm8960 \
 	lights.find5 \
 	camera-wrapper.msm8960 \
-	power.msm8960
 
 PRODUCT_PACKAGES += \
 	alsa.msm8960 \
