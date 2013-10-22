@@ -86,6 +86,20 @@ BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/oppo/find5/recovery/recovery_ke
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 BOARD_HAS_NO_SELECT_BUTTON := true
 
+#TWRP flags
+DEVICE_RESOLUTION := 1080x1920
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+TW_NO_USB_STORAGE := true
+TW_INCLUDE_CRYPTO := true
+TW_CRYPTO_FS_TYPE := "ext4"
+TW_CRYPTO_REAL_BLKDEV := "/dev/block/platform/msm_sdcc.1/by-name/userdata"
+TW_CRYPTO_MNT_POINT := "/data"
+TW_CRYPTO_FS_OPTIONS := "barrier=1,noauto_da_alloc"
+TW_CRYPTO_FS_FLAGS := "0x00000406"
+TW_CRYPTO_KEY_LOC := "footer"
+TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
+TW_MAX_BRIGHTNESS := 255
+
 # Partitions
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 10485760
@@ -126,4 +140,3 @@ BOARD_USES_SEPERATED_VOICE_SPEAKER := true
 SENSORS_NEED_SETRATE_ON_ENABLE := true
 
 -include vendor/oppo/find5/BoardConfigVendor.mk
-
