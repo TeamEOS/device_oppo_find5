@@ -185,7 +185,6 @@ PRODUCT_PACKAGES += \
 	
 # Build extra non-CM packages
 PRODUCT_PACKAGES += \
-        CMFileManager \
         Torch \
         MusicFX \
 	Email \
