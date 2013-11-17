@@ -136,6 +136,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.qc.sdk.audio.ssr=false \
 	ro.qc.sdk.audio.fluencetype=fluence \
+	ro.qc.sdk.gestures.camera=false \
 	ro.qc.sdk.sensors.gestures=false
 
 # Audio Configuration
