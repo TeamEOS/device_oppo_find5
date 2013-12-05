@@ -40,9 +40,5 @@
     <!-- The camera HAL does its own preview state management during snaps -->
     <!-- Allows setting video size before recording starts -->
     <bool name="needsEarlyVideoSize">true</bool>
-    <!-- Video HDR mode. Aggressively crashes on some hardware -->
-    <bool name="enableVideoHDR">true</bool>
-    <!-- Panorama focus mode.  Use FOCUS_MODE_INFINITY by default -->
-    <bool name="useInfinityFocus">true</bool>
 </resources>
 
