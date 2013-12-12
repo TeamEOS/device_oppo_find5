@@ -37,6 +37,9 @@ PRODUCT_COPY_FILES += \
     vendor/cfx/prebuilt/common/bootanimation/720.zip:system/media/bootanimation.zip
 endif
 
+PRODUCT_PACKAGES += \
+    Launcher3
+
 PRODUCT_NAME := full_find5
 PRODUCT_DEVICE := find5
 PRODUCT_BRAND := Android

@@ -17,19 +17,19 @@
 import init.find5.usb.rc
 
 on early-init
-    mount debugfs debugfs /sys/kernel/debug
     mkdir /system
     mount ext4 /dev/block/mmcblk0p19 /system wait rw noatime noauto_da_alloc
     mkdir /data
     mount ext4 /dev/block/platform/msm_sdcc.1/by-name/userdata /data wait rw nosuid noatime noauto_da_alloc
     mkdir /cache
     mount ext4 /dev/block/platform/msm_sdcc.1/by-name/cache /cache wait rw nosuid noatime noauto_da_alloc
+    mount debugfs debugfs /sys/kernel/debug
 
 on init
     export EXTERNAL_STORAGE /storage/sdcard0
 
-    mkdir /storage 0775 system system
-    mkdir /storage/sdcard0 0775 system system
+    mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
+    mkdir /storage/sdcard0 0700 root root
 
     # for backwards compatibility
     symlink /storage/sdcard0 /sdcard
@@ -42,9 +42,9 @@ on init
     mkdir /firmware 0771 system system
     mount vfat /dev/block/platform/msm_sdcc.1/by-name/modem /firmware ro noatime noauto_da_alloc shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
 
-on fs
-    mount_all ./fstab.find5
-    setprop ro.crypto.fuse_sdcard true
+# on fs
+#    mount_all ./fstab.find5
+#    setprop ro.crypto.fuse_sdcard true
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
@@ -181,9 +181,7 @@ on post-fs-data
     chown system system /sys/devices/platform/msm_sdcc.3/polling
     chown system system /sys/devices/platform/msm_sdcc.4/polling
 
-    #Create the symlink to qcn wpa_supplicant folder for ar6000 wpa_supplicant
     mkdir /data/system 0775 system system
-    #symlink /data/misc/wifi/wpa_supplicant /data/system/wpa_supplicant
 
     #Create directory used by sensor subsystem(dsps)
     mkdir /data/system/sensors
@@ -281,6 +279,13 @@ on charger
     # silence cgroup warnings
     chmod 0660 /dev/cpuctl
 
+	# suspend cap sysfs
+	chmod 0666 /sys/kernel/cpufreq_cap/screen_off_cap
+	chmod 0666 /sys/kernel/cpufreq_cap/screen_off_max_freq
+
+	chmod 0666 /sys/devices/system/cpu/cpuquiet/cpuquiet_driver/screen_off_cap
+	chmod 0666 /sys/devices/system/cpu/cpuquiet/cpuquiet_driver/screen_off_max_cpus
+
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
 
@@ -343,7 +348,7 @@ service sensors /system/bin/sensors.qcom
 
 service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
-    -e/data/misc/wifi/entropy.bin
+    -e/data/misc/wifi/entropy.bin -O/data/misc/wifi/sockets -g@android:wpa_wlan0
     #   we will start as root and wpa_supplicant will switch to user wifi
     #   after setting up the capabilities required for WEXT
     #   user wifi
@@ -356,7 +361,8 @@ service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
 service p2p_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
     -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf -N \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
-    -e/data/misc/wifi/entropy.bin -puse_p2p_group_interface=1
+    -e/data/misc/wifi/entropy.bin -puse_p2p_group_interface=1 \
+    -O/data/misc/wifi/sockets -g@android:wpa_wlan0
 #   we will start as root and wpa_supplicant will switch to user wifi
 #   after setting up the capabilities required for WEXT
 #   user wifi
@@ -452,3 +458,8 @@ service diag_mdlog /system/bin/logwrapper /system/bin/diag_mdlog -s 100
 
 # on property:gsm.sim.state=READY
 #    start diag_mdlog
+
+service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/sdcard0 /storage/sdcard0
+    class late_start
+    disabled
+
