@@ -201,8 +201,7 @@ PRODUCT_PACKAGES += \
 	gralloc.msm8960 \
 	copybit.msm8960 \
 	lights.find5 \
-	camera-wrapper.msm8960 \
-	power.msm8960
+	camera-wrapper.msm8960
 
 PRODUCT_PACKAGES += \
 	alsa.msm8960 \
@@ -240,6 +239,14 @@ PRODUCT_PACKAGES += \
 	bdAddrLoader \
 	libwfcu \
 	conn_init
+
+PRODUCT_PACKAGES += \
+	libwpa_client \
+	hostapd \
+	wpa_supplicant \
+	wpa_supplicant.conf \
+	wpa_supplicant_overlay.conf \
+	p2p_supplicant_overlay.conf
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	rild.libpath=/system/lib/libril-qc-qmi-1.so
