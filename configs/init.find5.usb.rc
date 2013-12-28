@@ -125,3 +125,46 @@ on property:sys.usb.config=diag,adb
     write /sys/class/android_usb/android0/enable 1
     start adbd
     setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=diag,adb
+    stop adbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/iSerial 0123456789ABCDEF
+    write /sys/class/android_usb/android0/idVendor 22D9
+    write /sys/class/android_usb/android0/idProduct 276C
+    write /sys/class/android_usb/android0/f_diag/clients diag
+    write /sys/class/android_usb/android0/f_serial/transports tty
+    write /sys/class/android_usb/android0/functions diag,adb
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+    
+on property:sys.usb.config=diag_mdm,adb
+    stop adbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/iSerial 0123456789ABCDEF
+    write /sys/class/android_usb/android0/idVendor 22D9
+    write /sys/class/android_usb/android0/idProduct 276D
+    write /sys/class/android_usb/android0/f_diag/clients diag_mdm
+    write /sys/class/android_usb/android0/f_serial/transports hsic
+    write /sys/class/android_usb/android0/f_rmnet/transports hsic,hsic
+    write /sys/class/android_usb/android0/functions diag,adb
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+ 
+on property:sys.usb.config=diag,diag_mdm,serial_hsic,serial_tty,rmnet_hsic,mass_storage,adb
+    stop adbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/iSerial 0123456789ABCDEF
+    write /sys/class/android_usb/android0/idVendor 22D9
+    write /sys/class/android_usb/android0/idProduct 276F
+    write /sys/class/android_usb/android0/f_diag/clients diag,diag_mdm
+    write /sys/class/android_usb/android0/f_serial/transports hsic,tty
+    write /sys/class/android_usb/android0/f_serial/transport_names serial_hsic
+    write /sys/class/android_usb/android0/f_rmnet/transports hsic,hsic
+    write /sys/class/android_usb/android0/f_rmnet/transport_names rmnet_hsic
+    write /sys/class/android_usb/android0/functions diag,adb,serial,rmnet,mass_storage
+    write /sys/class/android_usb/android0/enable 1
+    start adbd	
+    setprop sys.usb.state ${sys.usb.config}

@@ -134,11 +134,17 @@ on boot
     # NFC: create data/nfc for nv storage
     mkdir /data/nfc 770 nfc nfc
     mkdir /data/nfc/param 770 nfc nfc
+    
+    # For camera display bluescreen
+    write /sys/module/msm_rtb/parameters/filter 32
 
     # Assign TCP buffer thresholds to be ceiling value of technology maximums
     # Increased technology maximums should be reflected here.
     write /proc/sys/net/core/rmem_max  1220608
     write /proc/sys/net/core/wmem_max  1220608
+    
+    # Reducing failure of TCP/IP packet transimission according to Qualcomm's suggestion 
+    setprop persist.sys.data_netmgrd_mtu 1400
 
     start qcamerasvr
 
@@ -291,14 +297,8 @@ on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
 
 service rmt_storage /system/bin/rmt_storage
-    class main
+    class core
     user root
-
-# Update WIFI MAC address
-#service mac-update /system/bin/mac-update
-#    class main
-#    user wifi
-#    oneshot
 
 service hciattach /system/bin/sh /system/etc/init.find5.bt.sh
     class late_start
@@ -339,7 +339,6 @@ service kickstart /system/bin/qcks -i /firmware/image/
 
 service netmgrd /system/bin/netmgrd
     class main
-
 
 service sensors /system/bin/sensors.qcom
     class late_start
@@ -434,12 +433,14 @@ service qcom-post-fs /system/bin/sh /system/etc/init.qcom.post_fs.sh
     disabled
     oneshot
 
-#service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
-#    class late_start
-#    user root
-#    disabled
-#    oneshot
+service qcom-c_main-sh /system/bin/sh /system/etc/init.qcom.class_main.sh
+    class main
+    user root
+    disabled
+    oneshot
 
+on property:vold.decrypt=trigger_restart_framework
+    start qcom-c_main-sh
 
 # bugreport is triggered by holding down volume down, volume up and power
 service bugreport /system/bin/bugmailer.sh -v
@@ -459,6 +460,7 @@ service diag_mdlog /system/bin/logwrapper /system/bin/diag_mdlog -s 100
 
 # on property:gsm.sim.state=READY
 #    start diag_mdlog
+#    start qcom-c_main-sh
 
 service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/sdcard0 /storage/sdcard0
     class late_start

@@ -5,3 +5,6 @@ ro.device.gpu=Qualcomm Adreno 320
 ro.device.front_cam=1.9MP, 720p
 ro.device.rear_cam=13MP, 1080p
 ro.device.screen_res=1080 x 1920 pixels, 5.0"
+
+# For data module
+ro.use_data_netmgrd=true

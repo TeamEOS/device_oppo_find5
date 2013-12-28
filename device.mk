@@ -66,6 +66,7 @@ PRODUCT_COPY_FILES += \
 	device/oppo/find5/configs/audio_effects.conf:system/etc/audio_effects.conf
 	
 PRODUCT_COPY_FILES += \
+	device/oppo/find5/init.qcom.class_main.sh:system/etc/init.qcom.class_main.sh \
 	device/oppo/find5/init.qcom.post_fs.sh:system/etc/init.qcom.post_fs.sh \
 	device/oppo/find5/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
 	device/oppo/find5/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh
@@ -200,6 +201,7 @@ PRODUCT_PACKAGES += \
 	hwcomposer.msm8960 \
 	gralloc.msm8960 \
 	copybit.msm8960 \
+	memtrack.msm8960 \
 	lights.find5 \
 	camera-wrapper.msm8960
 
