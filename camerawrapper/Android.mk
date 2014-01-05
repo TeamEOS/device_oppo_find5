@@ -1,6 +1,8 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
+LOCAL_CFLAGS := -Wall -Wextra
+
 LOCAL_SRC_FILES := \
     CameraWrapper.cpp
 
