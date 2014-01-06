@@ -89,7 +89,7 @@ static int check_vendor_module()
     return rv;
 }
 
-static char *camera_fixup_getparams(int id, const char *settings)
+static char *camera_fixup_getparams(int id __attribute__((unused)), const char *settings)
 {
     bool videoMode = false;
 
@@ -134,10 +134,8 @@ static char *camera_fixup_getparams(int id, const char *settings)
     return ret;
 }
 
-static char *camera_fixup_setparams(int id, const char *settings)
+static char *camera_fixup_setparams(int id __attribute__((unused)), const char *settings)
 {
-    int previewW, previewH;
-    int faceBeautify = 0;
     bool videoMode = false;
     const char *sceneMode = "auto";
     const char *fpsRange = "5000,60000";
