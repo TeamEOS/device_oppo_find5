@@ -189,7 +189,7 @@ PRODUCT_PACKAGES += \
 # Build extra non-CM packages
 PRODUCT_PACKAGES += \
         Torch \
-        MusicFX \
+        DSPManager \
 	Email \
 	Exchange \
 	SpareParts \
