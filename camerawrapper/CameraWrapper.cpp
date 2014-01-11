@@ -165,6 +165,9 @@ static char *camera_fixup_setparams(int id __attribute__((unused)), const char *
         fpsRangeValues = params.get(android::CameraParameters::KEY_SUPPORTED_PREVIEW_FPS_RANGE);
     }
 
+    /* De-beautify */
+    params.set("face-beautify", "0");
+
 	/* Enable HDR mode */
     if (params.get("scene-mode")) {
 		const char* sceneMode = params.get("scene-mode");

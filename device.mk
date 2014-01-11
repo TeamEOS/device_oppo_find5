@@ -192,7 +192,6 @@ PRODUCT_PACKAGES += \
         DSPManager \
 	Email \
 	Exchange \
-	SpareParts \
 	ZeroXBenchmark \
 		
 
