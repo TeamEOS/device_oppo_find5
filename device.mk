@@ -67,7 +67,6 @@ PRODUCT_COPY_FILES += \
 	device/oppo/find5/configs/audio_effects.conf:system/etc/audio_effects.conf
 	
 PRODUCT_COPY_FILES += \
-	device/oppo/find5/init.qcom.class_main.sh:system/etc/init.qcom.class_main.sh \
 	device/oppo/find5/init.qcom.post_fs.sh:system/etc/init.qcom.post_fs.sh \
 	device/oppo/find5/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
 	device/oppo/find5/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh
@@ -246,9 +245,7 @@ PRODUCT_PACKAGES += \
 	libwpa_client \
 	hostapd \
 	wpa_supplicant \
-	wpa_supplicant.conf \
-	wpa_supplicant_overlay.conf \
-	p2p_supplicant_overlay.conf
+	wpa_supplicant.conf
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	rild.libpath=/system/lib/libril-qc-qmi-1.so

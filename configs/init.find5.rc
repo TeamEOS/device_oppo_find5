@@ -220,10 +220,6 @@ on post-fs-data
     # LED On/Off synchronization
     chown system system /sys/class/leds/red/device/lock
 
-    # communicate with mpdecision and thermald
-    mkdir /dev/socket/mpdecision 0770 system system
-    chmod 2770 /dev/socket/mpdecision
-
     # Tombstone dropboxes
     mkdir /data/tombstones 0771 system system
     mkdir /data/tombstones/modem 0771 system system
@@ -406,18 +402,6 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     user camera
     group camera system inet input graphics
 
-#service thermald /system/bin/thermald
-#    class main
-
-#service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
-#    class main
-
-service conn_init /system/bin/logwrapper /system/bin/conn_init
-    class late_start
-    user system
-    group system wifi
-    oneshot
-    
 service bdAddrLoader /system/bin/bdAddrLoader -f /persist/bluetooth/.bdaddr -h -x
     class main
     user bluetooth
@@ -429,15 +413,6 @@ service qcom-post-fs /system/bin/sh /system/etc/init.qcom.post_fs.sh
     user root
     disabled
     oneshot
-
-service qcom-c_main-sh /system/bin/sh /system/etc/init.qcom.class_main.sh
-    class main
-    user root
-    disabled
-    oneshot
-
-on property:vold.decrypt=trigger_restart_framework
-    start qcom-c_main-sh
 
 # bugreport is triggered by holding down volume down, volume up and power
 service bugreport /system/bin/bugmailer.sh -v
@@ -457,7 +432,6 @@ service diag_mdlog /system/bin/logwrapper /system/bin/diag_mdlog -s 100
 
 # on property:gsm.sim.state=READY
 #    start diag_mdlog
-#    start qcom-c_main-sh
 
 service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 /mnt/media_rw/sdcard0 /storage/sdcard0
     class late_start
