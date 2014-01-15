@@ -244,6 +244,7 @@ PRODUCT_PACKAGES += \
 	conn_init
 
 PRODUCT_PACKAGES += \
+	hostapd_default.conf \
 	libwpa_client \
 	hostapd \
 	wpa_supplicant \
