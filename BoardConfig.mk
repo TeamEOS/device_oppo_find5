@@ -36,6 +36,7 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=find5 lpj=67677 user_debug=31 msm_rtb.filter=0x20 ehci-hcd.park=3
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 
+
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_QCOM := true
@@ -67,9 +68,6 @@ WIFI_DRIVER_FW_PATH_AP           := "ap"
 # Qcom
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_USES_QCOM_BSP := true
-
-# Qcom Opts
-BOARD_USES_LIBQC_OPT := true
 
 # Flags
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_BSP
