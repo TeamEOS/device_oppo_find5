@@ -270,5 +270,7 @@
          policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
     -->
     <integer name="config_doubleTapOnHomeBehavior">3</integer>
-
+    
+    <!-- enable support for off-screen gesture support -->
+    <bool name="config_offscreenGestureSupport">true</bool>
 </resources>
