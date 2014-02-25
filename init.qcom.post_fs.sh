@@ -44,3 +44,6 @@ mount -o ro,remount,noatime,noauto_da_alloc /system
 mkdir -p /data/misc/wifi/prima
 cp /persist/WCNSS_* /data/misc/wifi/prima
 
+# Insmod modules
+insmod system/lib/modules/msm_kcal_ctrl.ko
+insmod system/lib/modules/scsi_wait_scan.ko
