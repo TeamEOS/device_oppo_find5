@@ -42,6 +42,10 @@ PRODUCT_PACKAGES += \
     init.find5.usb.rc \
     ueventd.find5.rc
 
+# Showp1984’s perf edits
+PRODUCT_PACKAGES += \
+    init.bricked.sh
+
 # Recovery
 #PRODUCT_PACKAGES += \
 #    init.recovery.find5.rc \
@@ -223,6 +227,10 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml
 
+# Showp1984’s perf edits
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    sys.perf.bricked=1
+    
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072
 
