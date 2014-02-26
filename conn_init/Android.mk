@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-ifneq ($(filter mako occam,$(TARGET_DEVICE)),)
+ifneq ($(filter find5 find5,$(TARGET_DEVICE)),)
 
 LOCAL_PATH:= $(call my-dir)
 
@@ -33,7 +33,7 @@ endif
 LOCAL_SHARED_LIBRARIES := libcutils liblog
 LOCAL_PRELINK_MODULE := false
 LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_OWNER := lge
+LOCAL_MODULE_OWNER := qcom
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
@@ -44,7 +44,7 @@ LOCAL_CFLAGS += -Wall -Werror
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_PATH := $(TARGET_OUT)/bin
 LOCAL_MODULE := conn_init
-LOCAL_MODULE_OWNER := lge
+LOCAL_MODULE_OWNER := qcom
 
 # Install symlinks with targets unavailable at build time
 LOCAL_POST_INSTALL_CMD := \

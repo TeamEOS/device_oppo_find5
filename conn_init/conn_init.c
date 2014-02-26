@@ -22,15 +22,15 @@ extern void wfc_util_atoh(char *pAsciiString, int szAsciiString, unsigned char *
 
 static int wifi_check_qcom_cfg_files()
 {
-    char macAddress[13];
-    char hex[7];
-    memset(macAddress, 0, 13);
-    memset(hex, 0, 7);
+    char macAddress[6];
+    char hex[6];
+    memset(macAddress, 0, 6);
+    memset(hex, 0, 6);
 
     // Read MAC String
     FILE *fp = NULL;
     int n = 0;
-    fp = fopen("/persist/wifi/.macaddr", "r");
+    fp = fopen("/data/opponvitems/4678", "r");
     if ( fp == NULL )
     {
         wfc_util_qcom_check_config((unsigned char *)macAddress);
