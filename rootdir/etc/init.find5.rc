@@ -521,6 +521,10 @@ service qcom-post-fs /system/bin/sh /system/etc/init.qcom.post_fs.sh
     user root
     disabled
     oneshot
+    
+# Showp1984’s perf edits
+on property:sys.perf.bricked=1
+    exec /system/bin/sh /init.bricked.sh
 
 # bugreport is triggered by holding down volume down, volume up and power
 service bugreport /system/bin/bugmailer.sh -v
