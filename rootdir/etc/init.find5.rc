@@ -345,6 +345,17 @@ service sensors /system/bin/sensors.qcom
     group root
     disabled
 
+service wcnss-init /system/bin/sh /system/etc/init.qcom.wifi.sh
+    class main
+    user root
+    oneshot
+
+service wcnss-service /system/bin/wcnss_service
+    user system
+    group system wifi
+    disabled
+    oneshot
+
 service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -O/data/misc/wifi/sockets \

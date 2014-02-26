@@ -1,3 +1,5 @@
+
+
 # system.prop for find5
 ro.device.chipset=Qualcomm Snapdragon S4 Pro APQ8064
 ro.device.cpu=1.5GHz quad-core Krait
@@ -5,3 +7,51 @@ ro.device.gpu=Qualcomm Adreno 320
 ro.device.front_cam=1.9MP, 720p
 ro.device.rear_cam=13MP, 1080p
 ro.device.screen_res=1080 x 1920 pixels, 5.0"
+
+ro.opengles.version=131072
+ro.sf.lcd_density=480
+
+# QCOM
+ro.vendor.extension_library=/system/lib/libqc-opt.so
+ro.qc.sdk.audio.ssr=false
+ro.qc.sdk.audio.fluencetype=fluence
+ro.qc.sdk.gestures.camera=false
+ro.qc.sdk.sensors.gestures=false
+ro.qc.sensors.wl_dis=true	
+com.qc.hardware=true
+
+# Audio Configuration
+persist.audio.handset.mic=dmic
+persist.audio.fluence.mode=endfire
+persist.audio.lowlatency.rec=false
+af.resampler.quality=4
+lpa.decode=false
+tunnel.decode=false
+tunnel.audiovideo.decode=true
+debug.egl.recordable.rgba8888=1
+
+# Enable AAC 5.1 output
+media.aac_51_output_enabled=true
+
+# BT
+ro.qualcomm.bt.hci_transport=smd
+
+# Debugging
+ro.secure=0
+service.adb.enable=1
+sys.usb.config=adb
+ro.debuggable=1
+persist.service.adb.enable=1
+
+# Radio
+persist.radio.apm_sim_not_pwdn=1
+ro.telephony.call_ring.multiple=0
+persist.hwc.mdpcomp.enable=true
+ro.cellbroadcast.emergencyids=0-65534 
+telephony.lteOnCdmaDevice=0
+drm.service.enabled=true
+
+# Wifi
+wifi.interface=wlan0 \
+wifi.supplicant_scan_interval=15
+

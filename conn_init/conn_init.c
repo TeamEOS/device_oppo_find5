@@ -17,33 +17,43 @@
 #include <string.h>
 #include <unistd.h>
 
+#include "wfc_util_log.h"
+#include "cutils/properties.h"
+
 extern int wfc_util_qcom_check_config(unsigned char *nv_mac_addr);
 extern void wfc_util_atoh(char *pAsciiString, int szAsciiString, unsigned char *pHexaBuff, int szHexaBuff);
 
 static int wifi_check_qcom_cfg_files()
 {
-    char macAddress[6];
-    char hex[6];
-    memset(macAddress, 0, 6);
-    memset(hex, 0, 6);
+    char raw[6];
+    char mac[6];
+
+    memset(raw, 0, 6);
+    memset(mac, 0, 6);
 
     // Read MAC String
     FILE *fp = NULL;
     int n = 0;
+    
     fp = fopen("/data/opponvitems/4678", "r");
-    if ( fp == NULL )
-    {
-        wfc_util_qcom_check_config((unsigned char *)macAddress);
+    if (fp == NULL) {
+        wfc_util_qcom_check_config((unsigned char *)raw);
         return 0;
-    }
-    else
-    {
-        n = fread(macAddress, 12, 1, fp);
+
+    } else {
+
+        n = fread(raw, 6, 1, fp);
         fclose(fp);
 
-        // Write MAC String
-        wfc_util_atoh( macAddress, 12, (unsigned char *)hex, 6);
-        wfc_util_qcom_check_config((unsigned char *)hex);
+        // swap bytes
+        mac[0] = raw[5];
+        mac[1] = raw[4];
+        mac[2] = raw[3];
+        mac[3] = raw[2];
+        mac[4] = raw[1];
+        mac[5] = raw[0];
+
+        wfc_util_qcom_check_config((unsigned char *)mac);
     }
     return 1;
 }

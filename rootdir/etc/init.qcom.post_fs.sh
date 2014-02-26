@@ -40,10 +40,3 @@ mount -o rw,remount,barrier=1 /system
 # remount system as read-only.
 mount -o ro,remount,noatime,noauto_da_alloc /system
 
-# Copy Wi-Fi firmware to /data
-mkdir -p /data/misc/wifi/prima
-cp /persist/WCNSS_* /data/misc/wifi/prima
-
-# Insmod modules
-insmod system/lib/modules/msm_kcal_ctrl.ko
-insmod system/lib/modules/scsi_wait_scan.ko

@@ -16,4 +16,7 @@
 
 LOCAL_PATH := $(call my-dir)
 
-include $(CLEAR_VARS)
+#----------------------------------------------------------------------
+# extra images
+#----------------------------------------------------------------------
+include build/core/generate_extra_images.mk

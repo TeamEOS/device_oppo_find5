@@ -24,6 +24,8 @@
 #include "wfc_util_fctrl.h"
 #include "wfc_util_common.h"
 
+#include "cutils/properties.h"
+
 #include "private/android_filesystem_config.h"
 
 #define WFC_UTIL_FEAUTRE_COPY_NV_BIN
@@ -567,8 +569,13 @@ int wfc_util_qcom_check_config(unsigned char *nv_mac_addr)
 	}
 
 #ifdef WFC_UTIL_FEAUTRE_COPY_NV_BIN
+	char nv_bin_tempfile_name[50];
+
+	sprintf(nv_bin_tempfile_name, "/system/etc/wifi/WCNSS_qcom_wlan_nv.bin");
+	wfc_util_log_error("nv bin : %s", nv_bin_tempfile_name);
+
 	if(0 > wfc_util_ffile_check_copy(WFC_UTIL_NV_BIN_FILE_NAME,
-	                             WFC_UTIL_NV_BIN_TEMPFILE_NAME,
+	                             nv_bin_tempfile_name,
 	                             0660,
 	                             AID_SYSTEM,
 	                             /* we use "radio" for gid to access from "rild" for AT cmd. */

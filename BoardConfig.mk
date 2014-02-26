@@ -30,7 +30,7 @@ BOARD_VENDOR := oppo
 # Kernel
 TARGET_ARM_EABI_VERSION := 4.8
 TARGET_KERNEL_CONFIG := find5_defconfig
-TARGET_KERNEL_SOURCE := kernel/oppo/find5
+TARGET_KERNEL_SOURCE := kernel/qcom/cfx
 BOARD_KERNEL_BASE := 0x80200000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=find5 lpj=67677 user_debug=31 msm_rtb.filter=0x20 ehci-hcd.park=3
@@ -81,7 +81,7 @@ TARGET_USES_ION := true
 TARGET_USES_C2D_COMPOSITION := true
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/oppo/find5/configs/fstab.find5
+TARGET_RECOVERY_FSTAB := device/oppo/find5/rootdir/etc/fstab.find5
 RECOVERY_FSTAB_VERSION := 2
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/oppo/find5/recovery/recovery_keys.c
