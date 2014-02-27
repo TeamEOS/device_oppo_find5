@@ -52,6 +52,6 @@ telephony.lteOnCdmaDevice=0
 drm.service.enabled=true
 
 # Wifi
-wifi.interface=wlan0 \
+wifi.interface=wlan0
 wifi.supplicant_scan_interval=15
 

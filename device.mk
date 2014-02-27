@@ -72,8 +72,8 @@ PRODUCT_PACKAGES += \
     setup_fs
 
 # Keystore
-PRODUCT_PACKAGES += \
-    keystore.msm8960
+#PRODUCT_PACKAGES += \
+#    keystore.msm8960
 
 PRODUCT_PACKAGES += \
     libgenlock \

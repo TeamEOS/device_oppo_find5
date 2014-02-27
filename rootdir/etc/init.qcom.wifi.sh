@@ -23,4 +23,3 @@ fi
 
 
 start wcnss-service
-
