@@ -14,13 +14,10 @@
 # limitations under the License.
 #
 
-# Sample: This is where we'd set a backup provider if we had one
-# $(call inherit-product, device/sample/products/backup_overlay.mk)
-
-# Inherit from the common Open Source product configuration
+# Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit from hardware-specific part of the product configuration
+# Inherit from find5 device
 $(call inherit-product, device/oppo/find5/device.mk)
 
 ifneq ($(TARGET_BUILD_VARIANT),codefirex)
@@ -42,9 +39,8 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_NAME := full_find5
 PRODUCT_DEVICE := find5
-PRODUCT_BRAND := Android
+PRODUCT_BRAND := OPPO
+PRODUCT_MANUFACTURER := OPPO
 PRODUCT_MODEL := Find 5
-PRODUCT_MANUFACTURER := Oppo
-PRODUCT_RESTRICT_VENDOR_FILES := false
 PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=oppo_find5 BUILD_FINGERPRINT=google/occam/mako:4.3/JB_MR2/573038:user/release-keys PRIVATE_BUILD_DESC="occam-user 4.3 JB_MR2 573038 release-keys"
 

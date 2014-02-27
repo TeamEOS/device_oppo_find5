@@ -33,7 +33,7 @@ PRODUCT_PACKAGES += \
     init.qcom.mdm_links.sh \
     init.qcom.modem_links.sh \
     init.qcom.post_fs.sh \
-    init.qcom.wifi.sh \
+    init.qcom.wifi.sh
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -84,7 +84,7 @@ PRODUCT_PACKAGES += \
     memtrack.msm8960 \
     camera-wrapper.msm8960
 
-PRODUCT_PACKAGES := \
+PRODUCT_PACKAGES += \
     lights.msm8960 \
     lights.find5
 
