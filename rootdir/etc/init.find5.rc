@@ -52,6 +52,24 @@ on early-boot
     setprop qcom.audio.init complete
 
 on boot
+    chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /proc/bluetooth/sleep/proto
+    chown system system /sys/module/sco/parameters/disable_esco
+    chown bluetooth bluetooth /sys/module/hci_smd/parameters/hcismd_set
+    chmod 0660 /sys/module/bluetooth_power/parameters/power
+    chmod 0660 /sys/module/hci_smd/parameters/hcismd_set
+    chmod 0660 /sys/class/rfkill/rfkill0/state
+    chmod 0660 /proc/bluetooth/sleep/proto
+    chown bluetooth bluetooth /dev/ttyHS0
+    chmod 0660 /dev/ttyHS0
+    chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
+    chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
+
+    chmod 0660 /dev/ttyHS2
+    chown bluetooth bluetooth /dev/ttyHS2
+
     exec system/bin/btnvtool -O
 
     #Oppo nv dump stuff - probably needed for BT MAC address.
@@ -155,6 +173,8 @@ on post-fs-data
 
     mkdir /data/misc/wifi/prima 0775 wifi wifi
     start qcom-post-fs
+    
+    mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
     # Create the directories used by the Wireless subsystem
     mkdir /data/misc/wifi 0770 wifi wifi
@@ -168,6 +188,11 @@ on post-fs-data
 
     # to observe dnsmasq.leases file for dhcp information of soft ap.
     chown dhcp system /data/misc/dhcp
+
+    mkdir /data/misc/playready
+    restorecon /data/misc/playready
+    mkdir /data/misc/tzapps
+    restorecon /data/misc/tzapps
 
     # Create the directory used by CnE subsystem
     mkdir /data/connectivity 0771 system system
@@ -210,6 +235,23 @@ on post-fs-data
 
     mkdir /persist/sensors
     chmod 775 /persist/sensors
+
+    #Create directories for gpsone_daemon services
+    mkdir /data/misc/gpsone_d 0770 system gps
+
+    #Create directories for QuIPS
+    mkdir /data/misc/quipc 0770 gps system
+
+    #Create directories for Location services
+    mkdir /data/misc/location 0770 gps gps
+    mkdir /data/misc/location/mq 0770 gps gps
+    mkdir /data/misc/location/xtwifi 0770 gps gps
+
+    #Create directory for hostapd
+    mkdir /data/hostapd 0660 system wifi
+
+    # Create /data/time folder for time-services
+    mkdir /data/time/ 0700 system system
 
     start sensors
 
@@ -444,6 +486,19 @@ service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
     disabled
     oneshot
 
+service wifi-crda /system/bin/sh /system/etc/init.crda.sh
+   class late_start
+   user root
+   disabled
+   oneshot
+
+service hostapd /system/bin/hostapd -dddd /data/hostapd/hostapd.conf
+    class late_start
+    user root
+    group root
+    oneshot
+    disabled
+
 service iprenew_bt-pan /system/bin/dhcpcd -n
    disabled
    oneshot
@@ -460,12 +515,6 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet input graphics
-
-service bdAddrLoader /system/bin/bdAddrLoader -f /persist/bluetooth/.bdaddr -h -x
-    class main
-    user bluetooth
-    group system bluetooth
-    oneshot
 
 service qcom-post-fs /system/bin/sh /system/etc/init.qcom.post_fs.sh
     class core

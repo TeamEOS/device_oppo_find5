@@ -29,7 +29,7 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 PRODUCT_PACKAGES += \
     init.bbv.sh \
     init.crda.sh \
-    init.qcom.bt.sh \
+    init.find5.bt.sh \
     init.qcom.mdm_links.sh \
     init.qcom.modem_links.sh \
     init.qcom.post_fs.sh \
