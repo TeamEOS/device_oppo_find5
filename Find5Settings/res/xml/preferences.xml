@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="category_gesture"
+        android:title="@string/category_gesture_title">
+        <CheckBoxPreference
+            android:key="music_gesture"
+            android:persistent="false"
+            android:title="@string/music_gesture"
+            android:summary="@string/music_gesture_summary"
+            android:defaultValue="false" />
+	
+	    <CheckBoxPreference
+            android:key="camera_gesture"
+            android:persistent="false"
+            android:title="@string/camera_gesture"
+            android:summary="@string/camera_gesture_summary"
+            android:defaultValue="false" />
+	    
+	    <CheckBoxPreference
+            android:key="doubletap_gesture"
+            android:persistent="false"
+            android:title="@string/doubletap_gesture"
+            android:summary="@string/doubletap_gesture_summary"
+            android:defaultValue="false" />
+	    
+	    <CheckBoxPreference
+            android:key="flash_gesture"
+            android:persistent="false"
+            android:title="@string/flash_gesture"
+            android:summary="@string/flash_gesture_summary"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+</PreferenceScreen>

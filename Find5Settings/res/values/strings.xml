@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Find 5 Settings</string>
+
+    <!-- Gestures -->
+    <string name="category_gesture_title">Offscreen gesture</string>
+    <string name="music_gesture">Music gesture</string>
+    <string name="music_gesture_summary">Use gestures to control music playback \n
+    • Two fingers vertically to play/pause\n
+    • Draw left arrow for previous track\n
+    • Draw right arrow for next track</string>
+    <string name="camera_gesture">Camera</string>
+    <string name="camera_gesture_summary">Draw a circle to activate camera</string>
+    <string name="doubletap_gesture">Wake device</string>
+    <string name="doubletap_gesture_summary">Double tap to wake the device</string>
+    <string name="flash_gesture">Flashlight</string>
+    <string name="flash_gesture_summary">Draw a \'V\' to toggle flashlight</string>
+</resources>
