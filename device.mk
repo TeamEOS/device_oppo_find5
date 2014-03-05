@@ -65,6 +65,10 @@ PRODUCT_PACKAGES += \
     charger_res_images \
     charger
 
+PRODUCT_PACKAGES += \
+    Find5Settings \
+    power.find5
+    
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     make_ext4fs \
