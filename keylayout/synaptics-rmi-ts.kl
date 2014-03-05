@@ -3,3 +3,17 @@ key 139  MENU  VIRTUAL
 key 102  HOME  VIRTUAL
 key 172  HOME  VIRTUAL
 key 158  BACK  VIRTUAL
+
+# Double tap = F3
+# O gesture  = F4
+# V gesture  = F5
+# II gesture = F6
+# < gesture  = F7
+# > gesture  = F8
+
+key 116   F3
+key 250   F4
+key 251   F6
+key 252   F5
+key 253   F7
+key 254   F8
