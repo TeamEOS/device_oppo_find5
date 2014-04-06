@@ -20,6 +20,6 @@
 # In particular, you can add lunch options with the add_lunch_combo
 # function: add_lunch_combo generic-eng
 
-for i in codefirex eng userdebug user; do
+for i in eng userdebug user; do
     add_lunch_combo full_find5-${i}
 done
