@@ -16,23 +16,15 @@
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, vendor/eos/config/gsm.mk)
+$(call inherit-product, vendor/eos/config/common_full_phone.mk)
 
 # Inherit from find5 device
 $(call inherit-product, device/oppo/find5/device.mk)
 
-ifneq ($(TARGET_BUILD_VARIANT),codefirex)
-# Get the long list of APNs
-PRODUCT_COPY_FILES := device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.xml
-else
-# Specify phone tech before including full_phone
-$(call inherit-product, vendor/cfx/config/gsm.mk)
-
-$(call inherit-product, vendor/cfx/config/common_full_phone.mk)
-
 # Copy Bootanimation
 PRODUCT_COPY_FILES += \
-    vendor/cfx/prebuilt/common/bootanimation/720.zip:system/media/bootanimation.zip
-endif
+    vendor/eos/prebuilt/common/bootanimation/1080.zip:system/media/bootanimation.zip
 
 PRODUCT_PACKAGES += \
     Launcher3
