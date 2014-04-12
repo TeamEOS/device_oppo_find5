@@ -33,6 +33,7 @@ PRODUCT_PACKAGES += \
     init.qcom.mdm_links.sh \
     init.qcom.modem_links.sh \
     init.qcom.post_fs.sh \
+    init.qcom.usb.sh \
     init.qcom.wifi.sh
 
 # Ramdisk

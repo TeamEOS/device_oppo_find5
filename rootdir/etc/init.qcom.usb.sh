@@ -33,7 +33,9 @@
 # do not have unique serial number.
 # User needs to set unique usb serial number to persist.usb.serialno
 #
+
 serialno=`getprop persist.usb.serialno`
+
 case "$serialno" in
     "")
     serialnum=`getprop ro.serialno`
@@ -56,6 +58,7 @@ chmod -h 220 /sys/devices/platform/msm_hsusb/gadget/wakeup
 #
 target=`getprop ro.board.platform`
 usbchgdisabled=`getprop persist.usb.chgdisabled`
+
 case "$usbchgdisabled" in
     "") ;; #Do nothing here
     * )
@@ -200,3 +203,8 @@ case "$baseband" in
           chown -h radio.radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
     ;;
 esac
+
+manufacturer=`getprop ro.product.manufacturer`
+model=`getprop ro.product.model`
+    echo $manufacturer > /sys/class/android_usb/android0/iManufacturer
+    echo $model > /sys/class/android_usb/android0/iProduct

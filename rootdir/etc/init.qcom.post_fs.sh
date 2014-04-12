@@ -36,6 +36,9 @@ mount -o rw,remount,barrier=1 /system
 # Run mdm link script
 /system/bin/sh /system/etc/init.qcom.mdm_links.sh
 
+# Run usb script
+/system/bin/sh /system/etc/init.qcom.usb.sh
+
 # This should be the last command
 # remount system as read-only.
 mount -o ro,remount,noatime,noauto_da_alloc /system
