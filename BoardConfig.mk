@@ -78,6 +78,7 @@ BOARD_EGL_CFG := device/oppo/find5/configs/egl.cfg
 USE_OPENGL_RENDERER := true
 TARGET_USES_ION := true
 TARGET_USES_C2D_COMPOSITION := true
+TARGET_DISPLAY_USE_RETIRE_FENCE := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB := device/oppo/find5/rootdir/etc/fstab.find5
