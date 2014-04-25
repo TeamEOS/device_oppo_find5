@@ -78,7 +78,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     make_ext4fs \
     e2fsck \
-    setup_fs
+    setup_fs \
+    nano
 
 # Keystore
 #PRODUCT_PACKAGES += \

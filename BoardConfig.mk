@@ -28,7 +28,6 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 BOARD_VENDOR := oppo
 
 # Kernel
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := 4.8-linaro
 TARGET_KERNEL_CONFIG := find5_defconfig
 TARGET_KERNEL_SOURCE := kernel/oppo/msm8960
 BOARD_KERNEL_BASE := 0x80200000
@@ -36,6 +35,9 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=find5 lpj=67677 user_debug=31 msm_rtb.filter=0x20 ehci-hcd.park=3
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 
+# Toolchain
+TARGET_GCC_VERSION_EXP := 4.8-linaro
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := 4.8-linaro
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
