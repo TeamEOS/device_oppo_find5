@@ -12,21 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#
-# Input Device Calibration File for the Mako touch screen.
-#
-
 device.internal = 1
 
 touch.deviceType = touchScreen
-touch.orientationAware = 1
 
-touch.size.calibration = diameter
-touch.size.scale = 22.5
-touch.size.bias = 0
-touch.size.isSummed = 0
-
-touch.pressure.calibration = amplitude
-touch.pressure.scale = 0.0125
-
-touch.orientation.calibration = none
+keyboard.orientationAware = 1
+keyboard.buildIn = 1

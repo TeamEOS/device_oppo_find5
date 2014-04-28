@@ -186,7 +186,7 @@ PRODUCT_COPY_FILES += \
 
 # Prebuilt input device calibration files
 PRODUCT_COPY_FILES += \
-    device/oppo/find5//idc/touch_dev.idc:system/usr/idc/touch_dev.idc
+    device/oppo/find5//idc/synaptics-rmi-ts.idc:system/usr/idc/synaptics-rmi-ts.idc
     
 # Prebuilt Key Character Map Files
 PRODUCT_COPY_FILES += \
