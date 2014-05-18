@@ -36,7 +36,7 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=find5 lpj
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
 
 # Toolchain
-#TARGET_GCC_VERSION_EXP := 4.8-linaro
+TARGET_GCC_VERSION_EXP := 4.8-linaro
 TARGET_KERNEL_CUSTOM_TOOLCHAIN := 4.8-linaro
 
 # Bluetooth
