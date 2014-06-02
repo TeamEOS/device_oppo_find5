@@ -26,9 +26,6 @@ $(call inherit-product, device/oppo/find5/device.mk)
 PRODUCT_COPY_FILES += \
     vendor/eos/prebuilt/common/bootanimation/1080.zip:system/media/bootanimation.zip
 
-PRODUCT_PACKAGES += \
-    Launcher3
-
 PRODUCT_NAME := full_find5
 PRODUCT_DEVICE := find5
 PRODUCT_BRAND := OPPO
