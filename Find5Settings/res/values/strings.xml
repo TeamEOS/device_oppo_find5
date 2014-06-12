@@ -15,4 +15,12 @@
     <string name="doubletap_gesture_summary">Double tap to wake the device</string>
     <string name="flash_gesture">Flashlight</string>
     <string name="flash_gesture_summary">Draw a \'V\' to toggle flashlight</string>
+    
+    <!-- Vibrator -->
+    <string name="category_hardware_title">Hardware</string>
+    <string name="vibrator_tuning_title_head">Vibrator feedback tuning</string>
+    <string name="vibrator_tuning_summary_head">Controls the default power of vibrator feedback</string>
+    <string name="vibrator_title">Vibration %</string>
+    <string name="vibrator_default_title">Default</string>
+    <string name="vibrator_test_title">Test</string>
 </resources>

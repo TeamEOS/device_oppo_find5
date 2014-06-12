@@ -36,12 +36,14 @@ public class DevicePreferenceActivity extends PreferenceFragment {
     public static final String KEY_FLASH_GESTURE = "flash_gesture";
     public static final String KEY_CAMERA_GESTURE = "camera_gesture";
     public static final String KEY_DOUBLETAP_GESTURE = "doubletap_gesture";
+    public static final String KEY_VIBRATOR_TUNING = "vibrator_tuning";
     
     private Context context;
     private CheckBoxPreference mMusicGesture;
     private CheckBoxPreference mFlashGesture;
     private CheckBoxPreference mCameraGesture;
     private CheckBoxPreference mDoubleTapGesture;
+    private VibratorTuningPreference mVibratorTuning;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,9 @@ public class DevicePreferenceActivity extends PreferenceFragment {
         mDoubleTapGesture = (CheckBoxPreference) findPreference(KEY_DOUBLETAP_GESTURE);
         mDoubleTapGesture.setChecked(DoubleTapGesture.isEnabled());
         mDoubleTapGesture.setEnabled(DoubleTapGesture.isSupported());
+        
+        mVibratorTuning = (VibratorTuningPreference) findPreference(KEY_VIBRATOR_TUNING);
+        mVibratorTuning.setEnabled(VibratorTuningPreference.isSupported());
     }
 
 	@Override
