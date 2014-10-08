@@ -16,7 +16,6 @@
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-$(call inherit-product, vendor/eos/config/gsm.mk)
 $(call inherit-product, vendor/eos/config/common_full_phone.mk)
 
 # Inherit from find5 device
